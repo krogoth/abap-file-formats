@@ -14,7 +14,7 @@ INTERFACE zif_aff_tabl_v1 PUBLIC.
       "! Authorization group (authorization object S_TABU_DIS) that protects the table contents
       "! in table maintenance and data browsing. Without a value the table is not assigned to an
       "! authorization group; &NC& is the group for tables that are not classified.
-      authorization_group TYPE c LENGTH 4,
+      authorization_group TYPE c LENGTH 14,
     END OF ty_main.
 
 ENDINTERFACE.
