@@ -1,0 +1,31 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Search Help",
+    "originalLanguage": "en"
+  },
+  "generalInformation": {
+    "category": "elementary"
+  },
+  "selection": {
+    "method": "ZAG_TABL_DB",
+    "methodType": "table",
+    "dialogType": "displayValuesImmediately",
+    "fuzzySimilarity": 0.8
+  },
+  "parameters": [
+    {
+      "name": "PARAM_KEY",
+      "import": true,
+      "export": true,
+      "listPosition": 1,
+      "dataElement": "KEY4"
+    },
+    {
+      "name": "PARAM_VALUE",
+      "listPosition": 2,
+      "dataElement": "ZAG_DTEL_CHAR",
+      "dataElementModified": true
+    }
+  ]
+}
