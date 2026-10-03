@@ -1,0 +1,78 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Maintenance View",
+    "originalLanguage": "en"
+  },
+  "generalInformation": {
+    "viewType": "maintenance",
+    "rootTable": "ZAG_TABL_DB",
+    "maintenanceFlag": "X",
+    "deliveryClass": "A",
+    "authorizationGroup": "&NC&"
+  },
+  "tables": [
+    {
+      "name": "ZAG_TABL_DB",
+      "foreignKeyTable": "ZAG_TABL_DB"
+    },
+    {
+      "name": "ZAG_TABL_FKEY",
+      "foreignKeyTable": "ZAG_TABL_DB",
+      "foreignKeyField": "DATA_KEY",
+      "foreignKeyDirection": "I"
+    }
+  ],
+  "joinConditions": [
+    {
+      "leftTable": "ZAG_TABL_DB",
+      "leftField": "MANDT",
+      "operator": "EQ",
+      "rightTable": "ZAG_TABL_FKEY",
+      "rightField": "MANDT",
+      "source": "F",
+      "foreignKeyTable": "ZAG_TABL_FKEY",
+      "foreignKeyField": "DATA_KEY",
+      "foreignKeyDirection": "I"
+    },
+    {
+      "leftTable": "ZAG_TABL_DB",
+      "leftField": "PARAM_KEY",
+      "operator": "EQ",
+      "rightTable": "ZAG_TABL_FKEY",
+      "rightField": "DATA_KEY",
+      "source": "F",
+      "foreignKeyTable": "ZAG_TABL_FKEY",
+      "foreignKeyField": "DATA_KEY",
+      "foreignKeyDirection": "I"
+    }
+  ],
+  "selectionConditions": [
+    {
+      "conditionName": "Z_AFF_EXAMPLE_VIEW",
+      "table": "ZAG_TABL_DB",
+      "field": "PARAM_KEY",
+      "operator": "LK",
+      "value": "'ABC%'"
+    }
+  ],
+  "fields": [
+    {
+      "name": "MANDT",
+      "table": "ZAG_TABL_DB",
+      "field": "MANDT",
+      "key": true
+    },
+    {
+      "name": "PARAM_KEY",
+      "table": "ZAG_TABL_DB",
+      "field": "PARAM_KEY",
+      "key": true
+    },
+    {
+      "name": "DATA_VALUE",
+      "table": "ZAG_TABL_FKEY",
+      "field": "DATA_VALUE"
+    }
+  ]
+}
