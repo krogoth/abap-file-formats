@@ -78,7 +78,6 @@
       "title": "Authorization Fields",
       "description": "Authorization fields",
       "type": "array",
-      "uniqueItems": true,
       "maxItems": 10,
       "items": {
         "title": "Authorization Fields",
@@ -170,15 +169,18 @@
           "type": "string",
           "enum": [
             "critical",
-            "notCritical"
+            "notCritical",
+            "notClassified"
           ],
           "enumTitles": [
             "Critical",
-            "Not Critical"
+            "Not Critical",
+            "Not Classified"
           ],
           "enumDescriptions": [
             "Critical",
-            "Not critical"
+            "Not critical",
+            "Never classified"
           ],
           "default": "notCritical"
         },
@@ -208,6 +210,48 @@
             "Not copied from trace data"
           ],
           "default": "withoutRestriction"
+        },
+        "ownContext": {
+          "title": "Usage in the Own Authorization Context",
+          "description": "Whether the authorization object may be used in the OWN authorization context of a behavior definition.",
+          "type": "string",
+          "enum": [
+            "allowed",
+            "notAllowed",
+            "notSpecified"
+          ],
+          "enumTitles": [
+            "Allowed",
+            "Not Allowed",
+            "Not Specified"
+          ],
+          "enumDescriptions": [
+            "Allowed",
+            "Not allowed",
+            "Never specified"
+          ],
+          "default": "notSpecified"
+        },
+        "privileged": {
+          "title": "Usage in Privileged Mode",
+          "description": "Whether the authorization object may be used in the privileged mode of a behavior definition.",
+          "type": "string",
+          "enum": [
+            "allowed",
+            "notAllowed",
+            "notSpecified"
+          ],
+          "enumTitles": [
+            "Allowed",
+            "Not Allowed",
+            "Not Specified"
+          ],
+          "enumDescriptions": [
+            "Allowed",
+            "Not allowed",
+            "Never specified"
+          ],
+          "default": "notSpecified"
         }
       },
       "additionalProperties": false

@@ -48,7 +48,7 @@ INTERFACE zif_aff_suso_v1
   "! <p class="shorttext">Authorization Fields</p>
   "! Authorization fields
   "! $maxItems 10
-  TYPES ty_authorization_fields TYPE SORTED TABLE OF ty_authorization_field WITH UNIQUE KEY authorization_field.
+  TYPES ty_authorization_fields TYPE STANDARD TABLE OF ty_authorization_field WITH DEFAULT KEY.
 
   "! $values {@link zif_aff_suso_v1.data:co_access_category}
   "! $default {@link zif_aff_suso_v1.data:co_access_category.not_classified}
@@ -105,10 +105,13 @@ INTERFACE zif_aff_suso_v1
     BEGIN OF co_criticality,
       "! <p class="shorttext">Critical</p>
       "! Critical
-      critical     TYPE ty_criticality VALUE 'C',
+      critical       TYPE ty_criticality VALUE 'C',
       "! <p class="shorttext">Not Critical</p>
       "! Not critical
-      not_critical TYPE ty_criticality VALUE 'N',
+      not_critical   TYPE ty_criticality VALUE 'N',
+      "! <p class="shorttext">Not Classified</p>
+      "! Never classified
+      not_classified TYPE ty_criticality VALUE ' ',
     END OF co_criticality.
 
   "! $values {@link zif_aff_suso_v1.data:co_class_copy_to_default_data}
@@ -135,6 +138,24 @@ INTERFACE zif_aff_suso_v1
       not_copied_from_trace_data    TYPE ty_class_copy_to_default_data VALUE 'N',
     END OF co_class_copy_to_default_data.
 
+  "! $values {@link zif_aff_suso_v1.data:co_usage}
+  "! $default {@link zif_aff_suso_v1.data:co_usage.not_specified}
+  TYPES ty_usage TYPE c LENGTH 1.
+  CONSTANTS:
+    "! <p class="shorttext">Usage</p>
+    "! Whether the authorization object may be used in a context
+    BEGIN OF co_usage,
+      "! <p class="shorttext">Allowed</p>
+      "! Allowed
+      allowed       TYPE ty_usage VALUE 'A',
+      "! <p class="shorttext">Not Allowed</p>
+      "! Not allowed
+      not_allowed   TYPE ty_usage VALUE 'N',
+      "! <p class="shorttext">Not Specified</p>
+      "! Never specified
+      not_specified TYPE ty_usage VALUE ' ',
+    END OF co_usage.
+
   TYPES:
     "! <p class="shorttext">Object Attributes</p>
     "! Object attributes
@@ -158,6 +179,12 @@ INTERFACE zif_aff_suso_v1
       "! For authorization objects with ABAP language version 'ABAP for Cloud Development', this function is not
       "! supported.
       class_copy_to_default_data TYPE ty_class_copy_to_default_data,
+      "! <p class="shorttext">Usage in the Own Authorization Context</p>
+      "! Whether the authorization object may be used in the OWN authorization context of a behavior definition.
+      own_context                TYPE ty_usage,
+      "! <p class="shorttext">Usage in Privileged Mode</p>
+      "! Whether the authorization object may be used in the privileged mode of a behavior definition.
+      privileged                 TYPE ty_usage,
     END OF ty_object_attributes.
 
   TYPES:
