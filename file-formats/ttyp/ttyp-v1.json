@@ -350,6 +350,12 @@
             "Long character string, no longer supported from Rel. 3.0"
           ],
           "default": "CHAR"
+        },
+        "rangeStructure": {
+          "title": "Range Structure",
+          "description": "Name of the structure that is the row of the ranges table (components SIGN, OPTION, LOW, HIGH); it must exist. Relevant when typeKind is rangeTypeOnDataelement or rangeTypeOnPredefinedType.",
+          "type": "string",
+          "maxLength": 30
         }
       },
       "additionalProperties": false,
@@ -416,17 +422,20 @@
               "enum": [
                 "rowType",
                 "keyComponents",
-                "standard"
+                "standard",
+                "notSpecified"
               ],
               "enumTitles": [
                 "Row Type (All Non-Reference Fields)",
                 "Key Components",
-                "Standard (Empty Key)"
+                "Standard (Empty Key)",
+                "Not Specified"
               ],
               "enumDescriptions": [
                 "Key consists of all non-reference fields of the row type (classic default)",
                 "Key fields are listed explicitly in key components",
-                "Empty primary key; used for standard tables without explicit key definition"
+                "Empty primary key; used for standard tables without explicit key definition",
+                "Primary key not specified (generic table type)"
               ],
               "default": "rowType"
             },
@@ -474,7 +483,23 @@
         "secondaryKeysAllowed": {
           "title": "Secondary Keys Allowed",
           "description": "Indicates whether additional secondary keys are allowed",
-          "type": "boolean"
+          "type": "string",
+          "enum": [
+            "allowed",
+            "notAllowed",
+            "notSpecified"
+          ],
+          "enumTitles": [
+            "Allowed",
+            "Not Allowed",
+            "Not Specified"
+          ],
+          "enumDescriptions": [
+            "Further secondary keys may be declared (the table type is generic)",
+            "No further secondary keys may be declared",
+            "Not specified"
+          ],
+          "default": "notSpecified"
         },
         "secondaryKeys": {
           "title": "Secondary Keys",

@@ -79,6 +79,9 @@ INTERFACE zif_aff_ttyp_v1 PUBLIC.
       "! <p class="shorttext">Standard (Empty Key)</p>
       "! Empty primary key; used for standard tables without explicit key definition
       standard       TYPE ty_primary_key_mode VALUE 'standard',
+      "! <p class="shorttext">Not Specified</p>
+      "! Primary key not specified (generic table type)
+      not_specified  TYPE ty_primary_key_mode VALUE 'notSpecified',
     END OF co_primary_key.
 
   "! <p class="shorttext">Key Uniqueness</p>
@@ -141,6 +144,27 @@ INTERFACE zif_aff_ttyp_v1 PUBLIC.
       key_components TYPE ty_secondary_key_definition VALUE 'keyComponents',
     END OF co_secondary_key_definition.
 
+  "! <p class="shorttext">Secondary Keys Allowed</p>
+  "! Whether further secondary keys may be declared where the table type is used
+  "! $values {@link zif_aff_ttyp_v1.data:co_secondary_keys_allowed}
+  "! $default {@link zif_aff_ttyp_v1.data:co_secondary_keys_allowed.not_specified}
+  TYPES ty_secondary_keys_allowed TYPE c LENGTH 12.
+
+  CONSTANTS:
+    "! <p class="shorttext">Secondary Keys Allowed</p>
+    "! Whether further secondary keys may be declared where the table type is used
+    BEGIN OF co_secondary_keys_allowed,
+      "! <p class="shorttext">Allowed</p>
+      "! Further secondary keys may be declared (the table type is generic)
+      allowed       TYPE ty_secondary_keys_allowed VALUE 'allowed',
+      "! <p class="shorttext">Not Allowed</p>
+      "! No further secondary keys may be declared
+      not_allowed   TYPE ty_secondary_keys_allowed VALUE 'notAllowed',
+      "! <p class="shorttext">Not Specified</p>
+      "! Not specified
+      not_specified TYPE ty_secondary_keys_allowed VALUE 'notSpecified',
+    END OF co_secondary_keys_allowed.
+
   TYPES:
     "! <p class="shorttext">Key Components</p>
     "! Key components
@@ -185,6 +209,11 @@ INTERFACE zif_aff_ttyp_v1 PUBLIC.
       "! Relevant when typeKind is rangeTypeOnPredefinedType.
       "! $values {@link zif_aff_ddic_types_v1.data:co_data_type}
       range_type      TYPE zif_aff_ddic_types_v1=>ty_data_type,
+      "! <p class="shorttext">Range Structure</p>
+      "! Name of the structure that is the row of the ranges table (components SIGN, OPTION,
+      "! LOW, HIGH); it must exist. Relevant when typeKind is rangeTypeOnDataelement or
+      "! rangeTypeOnPredefinedType.
+      range_structure TYPE zif_aff_types_v1=>ty_object_name_30,
     END OF ty_row_type.
 
   TYPES:
@@ -254,7 +283,9 @@ INTERFACE zif_aff_ttyp_v1 PUBLIC.
       primary_key            TYPE ty_primary_key,
       "! <p class="shorttext">Secondary Keys Allowed</p>
       "! Indicates whether additional secondary keys are allowed
-      secondary_keys_allowed TYPE abap_bool,
+      "! $values {@link zif_aff_ttyp_v1.data:co_secondary_keys_allowed}
+      "! $default {@link zif_aff_ttyp_v1.data:co_secondary_keys_allowed.not_specified}
+      secondary_keys_allowed TYPE ty_secondary_keys_allowed,
       "! <p class="shorttext">Secondary Keys</p>
       "! Secondary keys
       secondary_keys         TYPE ty_secondary_keys,
