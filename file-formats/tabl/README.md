@@ -8,6 +8,8 @@ TABL  | Table and Structure | Dictionary
 
 Table indexes are not covered.
 
+The authorization group is the table's assignment in table `TDDAT` (transaction `STDDAT`), checked with authorization object `S_TABU_DIS`. A table without an assignment has no `authorizationGroup`; `&NC&` (not classified) is an assignment and is written.
+
 ## File Structure
 
 File | Cardinality | Definition | Schema | Example

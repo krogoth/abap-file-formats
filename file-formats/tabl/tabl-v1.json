@@ -56,6 +56,12 @@
         "description",
         "originalLanguage"
       ]
+    },
+    "authorizationGroup": {
+      "title": "Authorization Group",
+      "description": "Authorization group (authorization object S_TABU_DIS) that protects the table contents in table maintenance and data browsing. Without a value the table is not assigned to an authorization group; &NC& is the group for tables that are not classified.",
+      "type": "string",
+      "maxLength": 4
     }
   },
   "additionalProperties": false,
