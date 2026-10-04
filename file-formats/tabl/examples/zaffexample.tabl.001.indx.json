@@ -1,0 +1,21 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Customers by city",
+    "originalLanguage": "en"
+  },
+  "dbSystems": {
+    "selection": "exclude",
+    "systems": [
+      "DB4"
+    ]
+  },
+  "indexFields": [
+    {
+      "fieldName": "COUNTRY"
+    },
+    {
+      "fieldName": "CITY"
+    }
+  ]
+}
