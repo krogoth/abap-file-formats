@@ -122,17 +122,23 @@
           "enum": [
             "mainBuffer",
             "parallel",
-            "none"
+            "none",
+            "localBuffer",
+            "localBufferWithProcessId"
           ],
           "enumTitles": [
             "Main Memory Buffering",
             "Parallel Buffering",
-            "No Buffering"
+            "No Buffering",
+            "Local Buffering",
+            "Local Buffering with Work Process ID"
           ],
           "enumDescriptions": [
             "Main memory buffering is the most efficient buffering solution with regards to system performance. Almost all number range objects use main memory buffering. However, it does have two restrictions: Numbers can no longer be assigned in chronological order. The numbering may contain gaps.",
             "Parallel buffering works in the same way as main memory buffering, with the difference that the number packages are not stored in the main memory, but are written to the table NRIVSHADOW.",
-            "No buffering method is used. A number is taken from an interval stored in database NRIV. The table line is locked and this lock remains until the application that requested the number is closed, either with a COMMIT WORK or a ROLLBACK."
+            "No buffering method is used. A number is taken from an interval stored in database NRIV. The table line is locked and this lock remains until the application that requested the number is closed, either with a COMMIT WORK or a ROLLBACK.",
+            "The number packages are buffered in a local file with the application server name as part of the key. If the numbers in the local file are used up, more numbers are fetched from the database. Numbers are not assigned in chronological order.",
+            "Local buffering with the work process ID as part of the key in addition to the application server name. A separate number package is buffered for every work process on each server, so database locks are almost completely avoided. Numbers are not assigned in chronological order."
           ],
           "default": "mainBuffer"
         },

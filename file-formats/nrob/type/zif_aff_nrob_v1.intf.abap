@@ -71,6 +71,16 @@ INTERFACE zif_aff_nrob_v1
       "! locked and this lock remains until the application that requested the number is closed, either
       "! with a COMMIT WORK or a ROLLBACK.
       none        TYPE ty_buffering VALUE ' ',
+      "! <p class="shorttext">Local Buffering</p>
+      "! The number packages are buffered in a local file with the application server name as part of the key.
+      "! If the numbers in the local file are used up, more numbers are fetched from the database.
+      "! Numbers are not assigned in chronological order.
+      local_buffer TYPE ty_buffering VALUE 'L',
+      "! <p class="shorttext">Local Buffering with Work Process ID</p>
+      "! Local buffering with the work process ID as part of the key in addition to the application server name.
+      "! A separate number package is buffered for every work process on each server, so database locks are
+      "! almost completely avoided. Numbers are not assigned in chronological order.
+      local_buffer_with_process_id TYPE ty_buffering VALUE 'P',
     END OF co_buffering.
 
   TYPES:
