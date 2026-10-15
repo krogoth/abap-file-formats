@@ -99,8 +99,8 @@ INTERFACE zif_aff_indx_v1
       "! <p class="shorttext">Database Systems</p>
       "! The database systems the index is restricted to; without a list the index is created on every
       "! database system. Releases that no longer store database-specific indexes resolve the list for the
-      "! running database: a plain index where the index is expected there, otherwise an index only for the
-      "! table buffer, or none on an unbuffered table
+      "! running database: a plain index where the index is expected there; otherwise an index only for the
+      "! table buffer on a buffered table, or none for a unique index or on an unbuffered table
       db_systems     TYPE ty_db_systems,
       "! <p class="shorttext">Fields</p>
       "! Index fields
